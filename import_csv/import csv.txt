@@ -1,0 +1,48 @@
+
+🟢 ✔ IMPORT CSV WITHOUT QUERY
+⭐ Step-1: Open SSMS
+
+Open SQL Server Management Studio
+
+Connect to your server
+
+⭐ Step-2: Select Your Database
+
+Example: TestDB
+
+Right-click on the database name →
+
+👉 Tasks → Import Flat File…
+
+📌 If you see “Import Data” instead of “Import Flat File”, that also works.
+
+⭐ Step-3: Choose Your CSV File
+
+Click Browse
+
+Select your file:
+employee_data.csv
+
+Click Open
+
+Click Next
+
+----------------------------------------------------
+orr 
+
+CREATE TABLE Employee ( EmpID INT PRIMARY KEY,
+                        EmpName VARCHAR(50), 
+                        Age INT, Gender VARCHAR(10), 
+                        Department VARCHAR(50), 
+                        Salary INT,
+                        City VARCHAR(50) );
+
+BULK INSERT Employee
+FROM 'E:\SQL\sql\commands\import_csv\employee_data.csv'
+WITH (
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    FIRSTROW = 2
+);
+
+-------------------------------------------
