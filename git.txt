@@ -1,0 +1,10 @@
+PS E:\my_work\SQL\SQL> cd .\Advanced_SQL\
+PS E:\my_work\SQL\SQL\Advanced_SQL> git status
+
+PS E:\my_work\SQL\SQL\Advanced_SQL> git add .     
+PS E:\my_work\SQL\SQL\Advanced_SQL> git status
+
+PS E:\my_work\SQL\SQL\Advanced_SQL> git commit -m "solve query"  
+
+PS E:\my_work\SQL\SQL\Advanced_SQL> git push 
+PS E:\my_work\SQL\SQL\Advanced_SQL> git status
