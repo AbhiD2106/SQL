@@ -80,16 +80,114 @@ from movies))
 /*
 --------------------------------------------------------------------------------------------------
 --row subquery 
-1. find all the user who never ordered
 
+1. find all the user who never ordered
+distinct = remove duplicate and make it in ordered
+
+select  * from users where user_id not in
+(select distinct(user_id) from orders)
+
+2. find all the movies made by top 3 directors (terms of total gross income)
+
+SELECT *
+FROM movies
+WHERE director IN (
+    SELECT TOP 3 director
+    FROM movies
+    GROUP BY director
+    ORDER BY SUM(gross) DESC
+);
+
+3. find all movies of all those whose filmography's avg rating > 8.5 (take 25000 votes as countoff)
+
+select * from movies where 
+star in (
+select star from movies
+where votes > 25000
+group by star
+having AVG(score) > 8.5) 
 
 --------------------------------------------------------------------------------------------------
 */
-select  * from 
+
+/*
+--table subquery
+--------------------------------------------------------------------------------------------------
+
+1. find most profitable movie of each  year
+
+SELECT *
+FROM movies m
+WHERE (gross - budget) = (
+    SELECT MAX(gross - budget)
+    FROM movies
+    WHERE year = m.year
+);
 
 
+--------------------------------------------------------------------------------------------------
+
+*/
 
 
+/*
+--------------------------------------------------------------------------------------------------
+corelated subq
+
+both sub and outer are connected
+
+1. find all the movies that have a rating higher then the avg rating of movies in same genere
+
+
+select * from movies m1
+where score > (select avg(score) from movies m2 where m2.genre = m1.genre)
+
+2. find the fav food of each customer
+
+;with fav_food AS(
+
+    select t2.user_id , t1.name , t4.f_name , count(*) AS total_Num 
+    from users t1
+    join orders t2 on t1.user_id = t2.user_id
+    join order_details t3 on t2.order_id = t3.order_id
+    join food t4 on t3.f_id = t4.f_id
+    group by t2.user_id ,  t1.name , t4.f_name
+
+)
+
+select * from fav_food f1
+where  total_Num = ( select MAX(total_Num) from fav_food f2  
+                        where f1.user_id = f2.user_id ) 
+
+--------------------------------------------------------------------------------------------------
+*/
+
+/*
+
+--------------------------------------------------------------------------------------------------
+--select
+1. get the percentage of votes or each movie compaired to rhe total  num of votes
+
+select name , (votes/(select sum( votes ) from movies)) * 100 from movies
+order by name asc
+
+2. dis movie name , genere , score , avg score of genere
+select name , genre , score , 
+(select avg(score) from movies m2 where m2.genre=m1.genre)  AS avg_score
+from movies m1
+
+--from
+
+1. dis avg rating of all resto
+
+select r_name , avg_rating from
+(
+select r_id , avg(restaurant_rating) as avg_rating from orders
+group by r_id
+)t1 join restaurants t2
+on t1.r_id = t2.r_id
+--------------------------------------------------------------------------------------------------
+*/
 
 
 
