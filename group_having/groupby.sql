@@ -1,6 +1,6 @@
 use learn
 
-/*
+
 --clean
 
 update smartphones set fast_charging = 0
@@ -18,10 +18,9 @@ where brand_name = 'apple'
 update smartphones set primary_camera_front = 0
 where primary_camera_front IS NULL 
 
-*/
 
 --Grouping data
-/*
+
 --1. Group smartphones by brand and get the count, average price, max rating, avg screen size, and avg battery capacity
 
 select top 15 brand_name , count(model) AS num_phone , 
@@ -35,8 +34,7 @@ order by num_phone desc;
 
 
 
---  Group smartphones by whether they have an NFC and get the average price and rating
- Avg price of 5g phones vs avg price of non 5g phones 
+--  Group smartphones by whether they have an NFC and get the average price and rating Avg price of 5g phones vs avg price of non 5g phones 
 
 
  select has_nfc,
@@ -70,7 +68,7 @@ group by extended_memory_available
 */
 
 --GroupBY on multiple columns
-/*
+
 --Group smartphones by the brand and processor brand and get the count of models and the average primary camera resolution (rear)
 
 select brand_name,processor_brand,os,
@@ -113,7 +111,7 @@ avg(price) AS avg_price
 from smartphones 
 where brand_name = 'Samsung'
 group by has_nfc
-*/
+
 
 -- find the phone name , price of the costliest phones
 

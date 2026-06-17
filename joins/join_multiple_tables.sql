@@ -21,7 +21,6 @@ Filtering Rows
 
 
 */
-/*
 
 select t2.order_id , t1.name ,t1.city
 from users t1 join orders t2
@@ -39,10 +38,10 @@ select * from
 order_details t1 join category t2 
 on t1.category_id = t2.category_id
 where t2.vertical = 'Chairs'
-*/
 
-/*
-1:53:57 Find all profitable orders
+
+
+--1:53:57 Find all profitable orders
 
 select t1.order_id , 
 sum(t2.profit)  AS profit
@@ -53,7 +52,7 @@ group by t1.order_id
 having sum(t2.profit) > 0
 order by profit desc
 
-1:58:10 Find the customer who has placed the max number of orders 
+--1:58:10 Find the customer who has placed the max number of orders 
 
 
 select top 1 t2.name,
@@ -64,7 +63,7 @@ on t1.user_id = t2.user_id
 group by t2.name
 order by count(*) desc
 
-2:00:20 Which is the most profitable category 
+--2:00:20 Which is the most profitable category 
 
 select top 5 t2.vertical ,
 sum( t1.profit ) as profit
@@ -74,7 +73,7 @@ t1.category_id = t2.category_id
 group by t2.vertical
 order by sum( t1.profit ) desc
 
-2:02:34 Which is the most profitable state 
+--2:02:34 Which is the most profitable state 
 
 
 
@@ -88,7 +87,7 @@ group by t3.state
 order by sum( t2.profit) desc
 
 
-2:05:27 Find all categories with profits higher than 5000 
+--2:05:27 Find all categories with profits higher than 5000 
 
 
 select t2.vertical ,
@@ -98,7 +97,4 @@ join category t2
 on t1.category_id = t2.category_id
 group by t2.vertical
 having sum( profit ) > 5000
-
-
-*/
 

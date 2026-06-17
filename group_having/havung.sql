@@ -1,6 +1,6 @@
 use learn
 --having clause = filter for group by
-/*
+
 -- find the avg rating of smartphone brands that have more than 20 phones
 
 select brand_name , 
@@ -10,10 +10,8 @@ from smartphones
 group by brand_name
 having count(*) > 40
 order by avg_rating desc
-*/
-/*
---Find the top 3 brands with the highest avg ram that has
---a refresh rate of at least 90 Hz and fast charging available and don't consider brands that have less than 10 phones
+
+--Find the top 3 brands with the highest avg ram that has a refresh rate of at least 90 Hz and fast charging available and don't consider brands that have less than 10 phones
 
 select top 3 brand_name,
 avg(ram_capacity) AS avg_ram
@@ -33,8 +31,8 @@ where has_5g = 'true'
 group by brand_name
 having avg(rating) > 70 AND COUNT(*)>10
 
-*/
---select * from smartphones
+
+select * from smartphones
 
 
 --practice
